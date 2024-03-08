@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bgs_app/views/home.dart';
 
 class FavScreen extends StatelessWidget {
   const FavScreen({Key? key}) : super(key: key);
@@ -7,9 +8,25 @@ class FavScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Fav"),
-      ),
-      body:  Text("Fav"),
+          leading: Row(
+          children: [
+            BackButton(
+              onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Home()));},
+              color: Colors.white,
+            )
+          ],
+        ), 
+          backgroundColor: const Color.fromARGB(255, 36, 86, 127),
+          title: const Text(
+            "Favori kitaplarınıza erişebilirsiniz",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 17,
+            ),
+          ),
+        ),
     );
   }
 }

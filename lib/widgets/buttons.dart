@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//butonlar değişecek bunlar kullanılmıyor artık
 //favori yıldız buton koyulabilir
 
 class FavButton extends StatelessWidget {
