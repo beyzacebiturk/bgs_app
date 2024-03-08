@@ -51,7 +51,7 @@ class SignUpScreen extends StatelessWidget {
               
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
                     child: Form(
                       key: formKey,

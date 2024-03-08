@@ -26,21 +26,16 @@ class _HelpScreenState extends State<HelpScreen> {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
-          /*leading: Row(
+          leading: Row(
           children: [
             BackButton(
-              onPressed: () {},
+              onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Home()));},
               color: Colors.white,
             )
           ],
-        ),*/ //ROW KULLANIMI
-          leading: BackButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Home()));
-            },
-            color: Colors.white,
-          ),
+        ), 
           backgroundColor: const Color.fromARGB(255, 36, 86, 127),
           title: const Text(
             "Uygulama hakkında genel bilgiler",
@@ -307,7 +302,7 @@ class _HelpScreenState extends State<HelpScreen> {
                                   obscureText: true,
                                 ),
                                 const SizedBox(height: 50),
-                                MaterialButton(
+                                MaterialButton( //kontrol sağlayabiliriz mail ve tel için 
                                   minWidth: double.tryParse('350'),
                                   height: 55,
                                   onPressed: () {},
