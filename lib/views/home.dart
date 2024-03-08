@@ -1,6 +1,7 @@
 import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:bgs_app/views/filter_screen.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -66,8 +67,10 @@ class _HomeState extends State<Home> {
                 minWidth: double.tryParse('50'),
                 height: 40,
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const FilterPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FilterPage()));
                 },
                 color: Colors.white,
                 elevation: 3,
@@ -120,6 +123,7 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
+       
       ),
     );
   }
