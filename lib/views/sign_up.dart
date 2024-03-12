@@ -2,6 +2,7 @@ import 'package:bgs_app/views/fav_screen.dart';
 import 'package:bgs_app/views/help_screen.dart';
 import 'package:bgs_app/views/home.dart';
 import 'package:bgs_app/views/login.dart';
+import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:bgs_app/controllers/text_field.dart';
 
@@ -123,66 +124,16 @@ class SignUpScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                MaterialButton(
-                  minWidth: double.tryParse('350'),
-                  height: 55,
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()));
-                  },
-                  color: const Color.fromARGB(255, 36, 86, 127),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(
-                      color: Color.fromARGB(255, 36, 86, 127),
-                      width: 3,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Text(
-                    "ÜYE OL",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 17,
-                      letterSpacing: 2,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                MyButtons.paintedButton(onPressed: () {}, buttonText: 'ÜYE OL'),
                 const SizedBox(height: 70),
-                Column(
-                  children: [
-                    MaterialButton(
-                      minWidth: double.tryParse('350'),
-                      height: 55,
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginPage()));
-                      },
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                          color: Color.fromARGB(255, 36, 86, 127),
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: const Text(
-                        "ÜYE GİRİŞİ",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 17,
-                          letterSpacing: 2,
-                          color: Color.fromARGB(255, 36, 86, 127),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                MyButtons.transparentButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()));
+                    },
+                    buttonText: 'ÜYE GİRİŞİ'),
                 const SizedBox(
                   height: 20,
                 )

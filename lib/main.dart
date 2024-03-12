@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:bgs_app/providers/nav_provider.dart';
 import 'package:bgs_app/views/filter_screen.dart';
 import 'package:bgs_app/views/fav_screen.dart';

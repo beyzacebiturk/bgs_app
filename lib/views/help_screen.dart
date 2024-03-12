@@ -1,4 +1,5 @@
 import 'package:bgs_app/views/home.dart';
+import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:bgs_app/controllers/text_field.dart';
 
@@ -21,7 +22,6 @@ class HelpScreen extends StatelessWidget {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController messageController = TextEditingController();
-
 
   final List<QuestionAnswer> questionAnswer = [
     QuestionAnswer(question: 'Soru', answer: 'ahsbhka'),
@@ -103,9 +103,7 @@ class HelpScreen extends StatelessWidget {
                                     }
                                     return null;
                                   },
-                                  onSaved: (value) {
-                                    
-                                  },
+                                  onSaved: (value) {},
                                 ),
                                 const SizedBox(height: 30),
                                 MessageTextFormField(
@@ -118,9 +116,7 @@ class HelpScreen extends StatelessWidget {
                                     }
                                     return null;
                                   },
-                                  onSaved: (value) {
-                                   
-                                  },
+                                  onSaved: (value) {},
                                 ),
                                 const SizedBox(height: 30),
                                 MessageTextFormField(
@@ -149,30 +145,8 @@ class HelpScreen extends StatelessWidget {
                                   onSaved: (value) {},
                                 ),
                                 const SizedBox(height: 50),
-                                MaterialButton(
-                                  //kontrol sağlayabiliriz mail ve tel için
-                                  minWidth: double.tryParse('350'),
-                                  height: 55,
-                                  onPressed: () {},
-                                  elevation: 0,
-                                  color: const Color.fromARGB(255, 36, 86, 127),
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                      color: Color.fromARGB(255, 36, 86, 127),
-                                      width: 3,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: const Text(
-                                    "GÖNDER",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 17,
-                                      letterSpacing: 2,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
+                                MyButtons.paintedButton(
+                                    onPressed: () {}, buttonText: 'GÖNDER'),
                               ],
                             ),
                           ),

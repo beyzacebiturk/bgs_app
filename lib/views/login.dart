@@ -1,9 +1,11 @@
 import 'package:bgs_app/controllers/text_field.dart';
+import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bgs_app/models/Users.dart';
 import 'package:flutter/widgets.dart';
 import 'package:bgs_app/views/sign_up.dart';
+import 'package:bgs_app/widgets/buttons.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -90,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                     autovalidateMode: AutovalidateMode.always,
                     child: Column(
                       children: [
-                         LoginTextFormField(
+                        LoginTextFormField(
                           controller: emailController,
                           hintText: 'E-Posta',
                           obscureText: false,
@@ -105,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(
                           height: 13,
                         ),
-                         LoginTextFormField(
+                        LoginTextFormField(
                           controller: passwordController,
                           hintText: 'Şifre',
                           obscureText: false,
@@ -125,65 +127,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            MaterialButton(
-              minWidth: double.tryParse('350'),
-              height: 55,
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  print("E-Posta: $email");
-                  print("Şifre: $password");
-                } 
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()));
-              },
-              color: const Color.fromARGB(255, 36, 86, 127),
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                side: const BorderSide(
-                  color: Color.fromARGB(255, 36, 86, 127),
-                  width: 3,
-                ),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Text(
-                "GİRİŞ YAP",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 17,
-                  letterSpacing: 2,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            MyButtons.paintedButton(onPressed: () {}, buttonText: 'GİRİŞ YAP'),
             const SizedBox(height: 80),
-            MaterialButton(
-              minWidth: double.tryParse('350'),
-              height: 55,
-              onPressed: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>  SignUpScreen()));
-              },
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                side: const BorderSide(
-                  color: Color.fromARGB(255, 36, 86, 127),
-                  width: 3,
-                ),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Text(
-                "KAYIT OL",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 17,
-                  letterSpacing: 2,
-                  color: Color.fromARGB(255, 36, 86, 127),
-                ),
-              ),
-            ),
+            MyButtons.transparentButton(
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => SignUpScreen()));
+                },
+                buttonText: 'KAYIT OL'),
             const SizedBox(height: 30),
           ],
         ),
