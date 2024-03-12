@@ -11,20 +11,20 @@ final bottomNavIndexProvider = StateProvider<int>((ref) {
 });
 
 class NavbarScreen extends ConsumerWidget {
-  const NavbarScreen({super.key});
+  NavbarScreen({super.key});
 
-  final List<Widget> list = const [
-    Home(),
+  final List<Widget> list = [
+    const Home(),
     FavScreen(),
     HelpScreen(),
-    LoginPage(),
+    const LoginPage(),
   ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var index = ref.watch(bottomNavIndexProvider.state);
     return Scaffold(
-      backgroundColor:  const Color.fromARGB(255, 36, 86, 127),
+      backgroundColor: const Color.fromARGB(255, 36, 86, 127),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         selectedItemColor: const Color.fromARGB(255, 36, 86, 127),
@@ -46,7 +46,9 @@ class NavbarScreen extends ConsumerWidget {
           BottomNavigationBarItem(
               icon: Icon(Icons.question_mark), label: 'Yardım'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: 'Üyelik',)
+            icon: Icon(Icons.person),
+            label: 'Üyelik',
+          )
         ],
       ),
       body: SafeArea(

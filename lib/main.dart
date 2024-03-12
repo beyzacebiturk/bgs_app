@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:bgs_app/providers/nav_provider.dart';
 import 'package:bgs_app/views/filter_screen.dart';
 import 'package:bgs_app/views/fav_screen.dart';
+import 'package:bgs_app/views/help_screen.dart';
 import 'package:bgs_app/views/home.dart';
 import 'package:bgs_app/views/login.dart';
 import 'package:bgs_app/views/sign_up.dart';
@@ -18,7 +21,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
       home: NavbarScreen(),
     );

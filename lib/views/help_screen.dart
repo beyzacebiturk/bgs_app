@@ -1,41 +1,52 @@
 import 'package:bgs_app/views/home.dart';
 import 'package:flutter/material.dart';
+import 'package:bgs_app/controllers/text_field.dart';
 
-class Item {
-  Item({
-    required this.headerText,
-    required this.expandedText,
-    this.isExpanded = false,
+class QuestionAnswer {
+  final String question;
+  final String answer;
+
+  QuestionAnswer({
+    required this.question,
+    required this.answer,
   });
-  String headerText;
-  String expandedText;
-  bool isExpanded;
 }
 
-class HelpScreen extends StatefulWidget {
-  const HelpScreen({super.key});
+class HelpScreen extends StatelessWidget {
+  HelpScreen({super.key});
 
-  @override
-  State<HelpScreen> createState() => _HelpScreenState();
-}
-
-class _HelpScreenState extends State<HelpScreen> {
   final formKey = GlobalKey<FormState>();
+  final TextEditingController nameSurnameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController messageController = TextEditingController();
+
+
+  final List<QuestionAnswer> questionAnswer = [
+    QuestionAnswer(question: 'Soru', answer: 'ahsbhka'),
+    QuestionAnswer(question: 'Soru', answer: 'ahsbhka'),
+    QuestionAnswer(question: 'Soru', answer: 'ahsbhka'),
+    QuestionAnswer(question: 'Soru', answer: 'ahsbhka'),
+    QuestionAnswer(question: 'Soru', answer: 'ahsbhka'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
           leading: Row(
-          children: [
-            BackButton(
-              onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Home()));},
-              color: Colors.white,
-            )
-          ],
-        ), 
+            children: [
+              BackButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Home()));
+                },
+                color: Colors.white,
+              )
+            ],
+          ),
           backgroundColor: const Color.fromARGB(255, 36, 86, 127),
           title: const Text(
             "Uygulama hakkında genel bilgiler",
@@ -50,112 +61,13 @@ class _HelpScreenState extends State<HelpScreen> {
             padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
-                ExpansionTile(
-                  iconColor: Colors.black,
-                  expandedAlignment: Alignment.centerLeft,
-                  backgroundColor: const Color.fromARGB(78, 217, 217, 217),
-                  collapsedBackgroundColor:
-                      const Color.fromARGB(45, 158, 158, 158),
-                  collapsedShape: const RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.grey, width: 2)),
-                  onExpansionChanged: (bool expanded) {},
-                  controlAffinity: ListTileControlAffinity
-                      .leading, //okun solda olmasını sağlar(leading)
-                  title: const Text(
-                    'Soru',
-                    style: TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                  children: const <Widget>[
-                    ListTile(
-                      title: Text('asjlalsaldald'),
-                    ),
-                  ],
+                ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: questionAnswer.map((questionAnswer) {
+                    return buildExpansionTile(questionAnswer);
+                  }).toList(),
                 ),
-                const SizedBox(height: 10),
-                ExpansionTile(
-                  iconColor: Colors.black,
-                  backgroundColor: const Color.fromARGB(78, 217, 217, 217),
-                  collapsedBackgroundColor:
-                      const Color.fromARGB(45, 158, 158, 158),
-                  collapsedShape: Border.all(color: Colors.grey, width: 2),
-                  collapsedTextColor: Colors.black,
-                  onExpansionChanged: (bool expanded) {},
-                  controlAffinity: ListTileControlAffinity
-                      .leading, //okun solda olmasını sağlar(leading)
-                  title: const Text(
-                    'Soru',
-                    style: TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                  children: const <Widget>[
-                    ListTile(
-                      title: Text('asjlalsaldald'),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                ExpansionTile(
-                  iconColor: Colors.black,
-                  backgroundColor: const Color.fromARGB(78, 217, 217, 217),
-                  collapsedBackgroundColor:
-                      const Color.fromARGB(45, 158, 158, 158),
-                  collapsedShape: Border.all(color: Colors.grey, width: 2),
-                  collapsedTextColor: Colors.black,
-                  onExpansionChanged: (bool expanded) {},
-                  controlAffinity: ListTileControlAffinity
-                      .leading, //okun solda olmasını sağlar(leading)
-                  title: const Text(
-                    'Soru',
-                    style: TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                  children: const <Widget>[
-                    ListTile(
-                      title: Text('asjlalsaldald'),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                ExpansionTile(
-                  iconColor: Colors.black,
-                  backgroundColor: const Color.fromARGB(78, 217, 217, 217),
-                  collapsedBackgroundColor:
-                      const Color.fromARGB(45, 158, 158, 158),
-                  collapsedShape: Border.all(color: Colors.grey, width: 2),
-                  collapsedTextColor: Colors.black,
-                  onExpansionChanged: (bool expanded) {},
-                  controlAffinity: ListTileControlAffinity
-                      .leading, //okun solda olmasını sağlar(leading)
-                  title: const Text(
-                    'Soru',
-                    style: TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                  children: const <Widget>[
-                    ListTile(
-                      title: Text('asjlalsaldald'),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                ExpansionTile(
-                  iconColor: Colors.black,
-                  backgroundColor: const Color.fromARGB(78, 217, 217, 217),
-                  collapsedBackgroundColor:
-                      const Color.fromARGB(45, 158, 158, 158),
-                  collapsedShape: Border.all(color: Colors.grey, width: 2),
-                  collapsedTextColor: Colors.black,
-                  onExpansionChanged: (bool expanded) {},
-                  controlAffinity: ListTileControlAffinity
-                      .leading, //okun solda olmasını sağlar(leading)
-                  title: const Text(
-                    'Soru',
-                    style: TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                  children: const <Widget>[
-                    ListTile(
-                      title: Text('asjlalsaldald'),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 15),
                 Container(
                   decoration: const BoxDecoration(
                     color: Colors.white,
@@ -181,7 +93,10 @@ class _HelpScreenState extends State<HelpScreen> {
                             key: formKey,
                             child: Column(
                               children: [
-                                TextFormField(
+                                MessageTextFormField(
+                                  controller: nameSurnameController,
+                                  hintText: 'Ad Soyad',
+                                  obscureText: false,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "Ad soyad alanı boş bırakılamaz";
@@ -189,30 +104,14 @@ class _HelpScreenState extends State<HelpScreen> {
                                     return null;
                                   },
                                   onSaved: (value) {
-                                    //email = value!;
+                                    
                                   },
-                                  decoration: const InputDecoration(
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(255, 36, 86, 127),
-                                          width: 3),
-                                    ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color.fromARGB(255, 36, 86, 127),
-                                        width: 2,
-                                      ),
-                                    ),
-                                    hintText: 'Ad Soyad',
-                                    hintStyle: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
-                                  ),
-                                  obscureText: false,
                                 ),
                                 const SizedBox(height: 30),
-                                TextFormField(
+                                MessageTextFormField(
+                                  controller: emailController,
+                                  hintText: 'E-Posta',
+                                  obscureText: false,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "E-Posta alanı boş bırakılamaz";
@@ -220,89 +119,38 @@ class _HelpScreenState extends State<HelpScreen> {
                                     return null;
                                   },
                                   onSaved: (value) {
-                                    //email = value!;
+                                   
                                   },
-                                  decoration: const InputDecoration(
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(255, 36, 86, 127),
-                                          width: 3),
-                                    ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color.fromARGB(255, 36, 86, 127),
-                                        width: 2,
-                                      ),
-                                    ),
-                                    hintText: 'E-Posta',
-                                    hintStyle:
-                                        TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                                  ),
-                                  obscureText: false,
                                 ),
                                 const SizedBox(height: 30),
-                                TextFormField(
+                                MessageTextFormField(
+                                  controller: phoneController,
+                                  hintText: 'Telefon',
+                                  obscureText: false,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "Cep telefonu alanı boş bırakılamaz";
                                     }
                                     return null;
                                   },
-                                  onSaved: (value) {
-                                    //email = value!;
-                                  },
-                                  decoration: const InputDecoration(
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(255, 36, 86, 127),
-                                          width: 3),
-                                    ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color.fromARGB(255, 36, 86, 127),
-                                        width: 2,
-                                      ),
-                                    ),
-                                    hintText: 'Telefon',
-                                    hintStyle:
-                                        TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                                  ),
-                                  obscureText: false,
+                                  onSaved: (value) {},
                                 ),
                                 const SizedBox(height: 70),
-                                TextFormField(
+                                MessageTextFormField(
+                                  controller: messageController,
+                                  hintText: 'İletmek İstedikleriniz',
+                                  obscureText: false,
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return "Mesaj alanı boş bırakılamaz";
                                     }
                                     return null;
                                   },
-                                  onSaved: (value) {
-                                    //email = value!;
-                                  },
-                                  decoration: const InputDecoration(
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(255, 36, 86, 127),
-                                          width: 3),
-                                    ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color.fromARGB(255, 36, 86, 127),
-                                        width: 2,
-                                      ),
-                                    ),
-                                    hintText: 'İletmek İstedikleriniz',
-                                    hintStyle:
-                                        TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                                  ),
-                                  obscureText: true,
+                                  onSaved: (value) {},
                                 ),
                                 const SizedBox(height: 50),
-                                MaterialButton( //kontrol sağlayabiliriz mail ve tel için 
+                                MaterialButton(
+                                  //kontrol sağlayabiliriz mail ve tel için
                                   minWidth: double.tryParse('350'),
                                   height: 55,
                                   onPressed: () {},
@@ -337,5 +185,29 @@ class _HelpScreenState extends State<HelpScreen> {
             ),
           ),
         ));
+  }
+
+  Widget buildExpansionTile(QuestionAnswer questionAnswer) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: ExpansionTile(
+        iconColor: Colors.black,
+        backgroundColor: const Color.fromARGB(78, 217, 217, 217),
+        collapsedBackgroundColor: const Color.fromARGB(45, 158, 158, 158),
+        collapsedShape: Border.all(color: Colors.grey, width: 2),
+        collapsedTextColor: Colors.black,
+        onExpansionChanged: (bool expanded) {},
+        controlAffinity: ListTileControlAffinity.leading,
+        title: Text(
+          questionAnswer.question,
+          style: const TextStyle(fontWeight: FontWeight.w500),
+        ),
+        children: [
+          ListTile(
+            title: Text(questionAnswer.answer),
+          ),
+        ],
+      ),
+    );
   }
 }

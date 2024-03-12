@@ -3,18 +3,24 @@ import 'package:bgs_app/views/help_screen.dart';
 import 'package:bgs_app/views/home.dart';
 import 'package:bgs_app/views/login.dart';
 import 'package:flutter/material.dart';
+import 'package:bgs_app/controllers/text_field.dart';
 
 class SignUpScreen extends StatelessWidget {
-  late TextEditingController _emailController, _passwordController;
-  late String nSurname, email, password;
   SignUpScreen({super.key});
 
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameSurnameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+
+  late String nSurname, email, password;
+
   int _currentIndex = 0;
-  List<Widget> list = const [
-    Home(),
+  List<Widget> list = [
+    const Home(),
     FavScreen(),
     HelpScreen(),
-    LoginPage(),
+    const LoginPage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -62,111 +68,52 @@ class SignUpScreen extends StatelessWidget {
                     key: formKey,
                     child: Column(
                       children: [
-                        TextFormField(
+                        const SizedBox(height: 10),
+                        LoginTextFormField(
+                          controller: nameSurnameController,
+                          hintText: 'Ad Soyad',
+                          obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Lütfen ad soyad giriniz";
+                              return "Ad soyad alanı boş bırakılamaz";
                             }
                             return null;
                           },
-                          onSaved: (value) {
-                            nSurname = value!;
-                          },
-                          decoration: const InputDecoration(
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 227, 79, 128),
-                                  width: 3),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 227, 79, 128),
-                                width: 2,
-                              ),
-                            ),
-                            hintText: 'Ad Soyad',
-                            hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          obscureText: false,
+                          onSaved: (value) {},
                         ),
                         const SizedBox(height: 10),
-                        TextFormField(
+                        LoginTextFormField(
+                          controller: emailController,
+                          hintText: 'E-Posta',
+                          obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Lütfen E-Posta giriniz";
+                              return "E-Posta alanı boş bırakılamaz";
                             }
                             return null;
                           },
-                          onSaved: (value) {
-                            email = value!;
-                          },
-                          decoration: const InputDecoration(
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 227, 79, 128),
-                                  width: 3),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 227, 79, 128),
-                                width: 2,
-                              ),
-                            ),
-                            hintText: 'E-Posta',
-                            hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          obscureText: false,
+                          onSaved: (value) {},
                         ),
                         const SizedBox(height: 10),
-                        TextFormField(
+                        LoginTextFormField(
+                          controller: phoneController,
+                          hintText: 'Telefon',
+                          obscureText: false,
                           validator: null,
-                          onSaved: (value) {
-                            email = value!;
-                          },
-                          decoration: const InputDecoration(
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 227, 79, 128),
-                                  width: 3),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 227, 79, 128),
-                                width: 2,
-                              ),
-                            ),
-                            hintText: 'Telefon',
-                            hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          obscureText: false,
+                          onSaved: (value) {},
                         ),
                         const SizedBox(height: 10),
-                        TextFormField(
+                        LoginTextFormField(
+                          controller: passwordController,
+                          hintText: 'Şifre',
+                          obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Lütfen şifre giriniz";
+                              return "Şifre alanı boş bırakılamaz";
                             }
                             return null;
                           },
-                          onSaved: (value) {
-                            password = value!;
-                          },
-                          decoration: const InputDecoration(
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 227, 79, 128),
-                                  width: 3),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 227, 79, 128),
-                                width: 2,
-                              ),
-                            ),
-                            hintText: 'Şifre',
-                            hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          obscureText: true,
+                          onSaved: (value) {},
                         ),
                       ],
                     ),
@@ -249,7 +196,7 @@ class SignUpScreen extends StatelessWidget {
           selectedItemColor: const Color.fromARGB(255, 36, 86, 127),
           type: BottomNavigationBarType.fixed,
           iconSize: 27,
-         /* onTap: (int newIndex) {
+          /* onTap: (int newIndex) {
             setState(() {
               _currentIndex = newIndex;
             });

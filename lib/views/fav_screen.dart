@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bgs_app/views/home.dart';
 
 class FavScreen extends StatelessWidget {
-  const FavScreen({Key? key}) : super(key: key);
+   FavScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

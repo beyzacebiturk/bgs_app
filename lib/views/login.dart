@@ -1,3 +1,4 @@
+import 'package:bgs_app/controllers/text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bgs_app/models/Users.dart';
@@ -12,7 +13,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late TextEditingController _emailController, _passwordController;
+  late TextEditingController emailController, passwordController;
   late String email, password;
   final formKey = GlobalKey<FormState>();
   Users user = Users();
@@ -20,21 +21,21 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
   void _login() {
     if (formKey.currentState!.validate()) {
-      String email = _emailController.text;
-      String password = _passwordController.text;
+      String email = emailController.text;
+      String password = passwordController.text;
       print('Email: $email, Password: $password');
     }
   }
@@ -89,62 +90,32 @@ class _LoginPageState extends State<LoginPage> {
                     autovalidateMode: AutovalidateMode.always,
                     child: Column(
                       children: [
-                        TextFormField(
+                         LoginTextFormField(
+                          controller: emailController,
+                          hintText: 'E-Posta',
+                          obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Lütfen e-posta giriniz";
+                              return "Lütfen E-Posta giriniz.";
                             }
                             return null;
                           },
-                          onSaved: (value) {
-                            email = value!;
-                          },
-                          decoration: const InputDecoration(
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 227, 79, 128),
-                                  width: 3),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 227, 79, 128),
-                                width: 2,
-                              ),
-                            ),
-                            hintText: 'E-posta',
-                            hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          obscureText: false,
+                          onSaved: (value) {},
                         ),
                         const SizedBox(
                           height: 13,
                         ),
-                        TextFormField(
+                         LoginTextFormField(
+                          controller: passwordController,
+                          hintText: 'Şifre',
+                          obscureText: false,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Lütfen şifre giriniz.";
                             }
                             return null;
                           },
-                          onSaved: (value) {
-                            password = value!;
-                          },
-                          decoration: const InputDecoration(
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 227, 79, 128),
-                                  width: 3),
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 227, 79, 128),
-                                width: 2,
-                              ),
-                            ),
-                            hintText: 'Şifre',
-                            hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          obscureText: true,
+                          onSaved: (value) {},
                         ),
                         const Text('şifremi unuttum')
                         //ŞİFRE SIFIRLAMA
