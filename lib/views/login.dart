@@ -1,4 +1,5 @@
 import 'package:bgs_app/controllers/text_field.dart';
+import 'package:bgs_app/navbar/navbar_states.dart';
 import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   late String email, password;
   final formKey = GlobalKey<FormState>();
   Users user = Users();
+
 
   @override
   void initState() {
@@ -89,7 +91,6 @@ class _LoginPageState extends State<LoginPage> {
                 child: SingleChildScrollView(
                   child: Form(
                     key: formKey,
-                    autovalidateMode: AutovalidateMode.always,
                     child: Column(
                       children: [
                         LoginTextFormField(
@@ -102,7 +103,9 @@ class _LoginPageState extends State<LoginPage> {
                             }
                             return null;
                           },
-                          onSaved: (value) {},
+                          onSaved: (value) {
+                            email = value!;
+                          },
                         ),
                         const SizedBox(
                           height: 13,
@@ -117,7 +120,9 @@ class _LoginPageState extends State<LoginPage> {
                             }
                             return null;
                           },
-                          onSaved: (value) {},
+                          onSaved: (value) {
+                            password = value!;
+                          },
                         ),
                         const Text('şifremi unuttum')
                         //ŞİFRE SIFIRLAMA
@@ -127,17 +132,22 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            MyButtons.paintedButton(onPressed: () {}, buttonText: 'GİRİŞ YAP'),
+            MyButtons.paintedButton(onPressed: () {
+              if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                      }
+            }, buttonText: 'GİRİŞ YAP'),
             const SizedBox(height: 80),
             MyButtons.transparentButton(
                 onPressed: () {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => SignUpScreen()));
+                      MaterialPageRoute(builder: (context) => const SignUpScreen()));
                 },
                 buttonText: 'KAYIT OL'),
             const SizedBox(height: 30),
           ],
         ),
+        bottomNavigationBar: Navbar(),
       ),
     );
   }

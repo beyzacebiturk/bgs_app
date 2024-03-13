@@ -1,3 +1,4 @@
+import 'package:bgs_app/navbar/navbar_states.dart';
 import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:bgs_app/views/filter_screen.dart';
@@ -123,7 +124,7 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-       
+       bottomNavigationBar: Navbar(),
       ),
     );
   }

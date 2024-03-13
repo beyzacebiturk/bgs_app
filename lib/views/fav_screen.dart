@@ -1,3 +1,4 @@
+import 'package:bgs_app/navbar/navbar_states.dart';
 import 'package:flutter/material.dart';
 import 'package:bgs_app/views/home.dart';
 
@@ -27,6 +28,7 @@ class FavScreen extends StatelessWidget {
             ),
           ),
         ),
+        bottomNavigationBar: Navbar(),
     );
   }
 }

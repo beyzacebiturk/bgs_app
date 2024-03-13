@@ -1,3 +1,4 @@
+import 'package:bgs_app/navbar/navbar_states.dart';
 import 'package:bgs_app/views/fav_screen.dart';
 import 'package:bgs_app/views/help_screen.dart';
 import 'package:bgs_app/views/home.dart';
@@ -6,23 +7,20 @@ import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:bgs_app/controllers/text_field.dart';
 
-class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameSurnameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
-  late String nSurname, email, password;
-
-  int _currentIndex = 0;
-  List<Widget> list = [
-    const Home(),
-    FavScreen(),
-    HelpScreen(),
-    const LoginPage(),
-  ];
+  late String nSurname, email, phone, password;
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
@@ -67,6 +65,7 @@ class SignUpScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Form(
                     key: formKey,
+                    //autovalidateMode: AutovalidateMode.always,
                     child: Column(
                       children: [
                         const SizedBox(height: 10),
@@ -80,7 +79,9 @@ class SignUpScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          onSaved: (value) {},
+                          onSaved: (value) {
+                            nSurname = value!;
+                          },
                         ),
                         const SizedBox(height: 10),
                         LoginTextFormField(
@@ -93,7 +94,9 @@ class SignUpScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          onSaved: (value) {},
+                          onSaved: (value) {
+                            email = value!;
+                          },
                         ),
                         const SizedBox(height: 10),
                         LoginTextFormField(
@@ -101,7 +104,9 @@ class SignUpScreen extends StatelessWidget {
                           hintText: 'Telefon',
                           obscureText: false,
                           validator: null,
-                          onSaved: (value) {},
+                          onSaved: (value) {
+                            phone = value!;
+                          },
                         ),
                         const SizedBox(height: 10),
                         LoginTextFormField(
@@ -114,7 +119,9 @@ class SignUpScreen extends StatelessWidget {
                             }
                             return null;
                           },
-                          onSaved: (value) {},
+                          onSaved: (value) {
+                            password = value!;
+                          },
                         ),
                       ],
                     ),
@@ -124,7 +131,13 @@ class SignUpScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                MyButtons.paintedButton(onPressed: () {}, buttonText: 'ÜYE OL'),
+                MyButtons.paintedButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                      }
+                    },
+                    buttonText: 'ÜYE OL'),
                 const SizedBox(height: 70),
                 MyButtons.transparentButton(
                     onPressed: () {
@@ -141,25 +154,7 @@ class SignUpScreen extends StatelessWidget {
             ),
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          backgroundColor: Colors.white,
-          selectedItemColor: const Color.fromARGB(255, 36, 86, 127),
-          type: BottomNavigationBarType.fixed,
-          iconSize: 27,
-          /* onTap: (int newIndex) {
-            setState(() {
-              _currentIndex = newIndex;
-            });
-          },*/
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Kitaplar'),
-            BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Favoriler'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.question_mark), label: 'Yardım'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Üyelik'),
-          ],
-        ),
+        bottomNavigationBar: Navbar(),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:bgs_app/navbar/navbar_states.dart';
 import 'package:bgs_app/views/home.dart';
 import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/material.dart';
@@ -34,131 +35,138 @@ class HelpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[200],
-        appBar: AppBar(
-          leading: Row(
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        leading: Row(
+          children: [
+            BackButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Home()));
+              },
+              color: Colors.white,
+            )
+          ],
+        ),
+        backgroundColor: const Color.fromARGB(255, 36, 86, 127),
+        title: const Text(
+          "Uygulama hakkında genel bilgiler",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 17,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
             children: [
-              BackButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Home()));
-                },
-                color: Colors.white,
+              ListView(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                children: questionAnswer.map((questionAnswer) {
+                  return buildExpansionTile(questionAnswer);
+                }).toList(),
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        const Text(
+                          'İstek ve Öneri Formu',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 17),
+                        ),
+                        const Divider(),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Form(
+                          key: formKey,
+                          child: Column(
+                            children: [
+                              MessageTextFormField(
+                                controller: nameSurnameController,
+                                hintText: 'Ad Soyad',
+                                obscureText: false,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Ad soyad alanı boş bırakılamaz";
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {},
+                              ),
+                              const SizedBox(height: 30),
+                              MessageTextFormField(
+                                controller: emailController,
+                                hintText: 'E-Posta',
+                                obscureText: false,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "E-Posta alanı boş bırakılamaz";
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {},
+                              ),
+                              const SizedBox(height: 30),
+                              MessageTextFormField(
+                                controller: phoneController,
+                                hintText: 'Telefon',
+                                obscureText: false,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Cep telefonu alanı boş bırakılamaz";
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {},
+                              ),
+                              const SizedBox(height: 70),
+                              MessageTextFormField(
+                                controller: messageController,
+                                hintText: 'İletmek İstedikleriniz',
+                                obscureText: false,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Mesaj alanı boş bırakılamaz";
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {},
+                              ),
+                              const SizedBox(height: 50),
+                              MyButtons.paintedButton(
+                                  onPressed: () {
+                                    if (formKey.currentState!.validate()) {
+                                      formKey.currentState!.save();
+                                    }
+                                  },
+                                  buttonText: 'GÖNDER'),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               )
             ],
           ),
-          backgroundColor: const Color.fromARGB(255, 36, 86, 127),
-          title: const Text(
-            "Uygulama hakkında genel bilgiler",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 17,
-            ),
-          ),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                ListView(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: questionAnswer.map((questionAnswer) {
-                    return buildExpansionTile(questionAnswer);
-                  }).toList(),
-                ),
-                Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          const Text(
-                            'İstek ve Öneri Formu',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 17),
-                          ),
-                          const Divider(),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Form(
-                            key: formKey,
-                            child: Column(
-                              children: [
-                                MessageTextFormField(
-                                  controller: nameSurnameController,
-                                  hintText: 'Ad Soyad',
-                                  obscureText: false,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Ad soyad alanı boş bırakılamaz";
-                                    }
-                                    return null;
-                                  },
-                                  onSaved: (value) {},
-                                ),
-                                const SizedBox(height: 30),
-                                MessageTextFormField(
-                                  controller: emailController,
-                                  hintText: 'E-Posta',
-                                  obscureText: false,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "E-Posta alanı boş bırakılamaz";
-                                    }
-                                    return null;
-                                  },
-                                  onSaved: (value) {},
-                                ),
-                                const SizedBox(height: 30),
-                                MessageTextFormField(
-                                  controller: phoneController,
-                                  hintText: 'Telefon',
-                                  obscureText: false,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Cep telefonu alanı boş bırakılamaz";
-                                    }
-                                    return null;
-                                  },
-                                  onSaved: (value) {},
-                                ),
-                                const SizedBox(height: 70),
-                                MessageTextFormField(
-                                  controller: messageController,
-                                  hintText: 'İletmek İstedikleriniz',
-                                  obscureText: false,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return "Mesaj alanı boş bırakılamaz";
-                                    }
-                                    return null;
-                                  },
-                                  onSaved: (value) {},
-                                ),
-                                const SizedBox(height: 50),
-                                MyButtons.paintedButton(
-                                    onPressed: () {}, buttonText: 'GÖNDER'),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ));
+      ),
+      bottomNavigationBar: Navbar(),
+    );
   }
 
   Widget buildExpansionTile(QuestionAnswer questionAnswer) {
