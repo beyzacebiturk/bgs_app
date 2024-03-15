@@ -1,12 +1,10 @@
 import 'package:bgs_app/controllers/text_field.dart';
 import 'package:bgs_app/navbar/navbar_states.dart';
 import 'package:bgs_app/widgets/buttons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bgs_app/models/Users.dart';
-import 'package:flutter/widgets.dart';
 import 'package:bgs_app/views/sign_up.dart';
-import 'package:bgs_app/widgets/buttons.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

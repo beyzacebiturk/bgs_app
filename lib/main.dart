@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:bgs_app/navbar/navbar_states.dart';
 import 'package:bgs_app/views/filter_screen.dart';
 import 'package:bgs_app/views/fav_screen.dart';
@@ -15,12 +14,14 @@ void main() {
   );
 }
 
+final selectedIndexProvider = StateProvider<int>((ref) => 0);
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Home(),
     );

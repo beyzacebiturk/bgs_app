@@ -1,7 +1,4 @@
 import 'package:bgs_app/navbar/navbar_states.dart';
-import 'package:bgs_app/views/fav_screen.dart';
-import 'package:bgs_app/views/help_screen.dart';
-import 'package:bgs_app/views/home.dart';
 import 'package:bgs_app/views/login.dart';
 import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/material.dart';
