@@ -1,19 +1,23 @@
 class Books {
-  String? title;
-  String? publishedYear;
-  String? grade;
-  String? branch;
-  String? category;
-  String? bookImage;
+  final String title;
+  final int publishedYear;
+  final String grade;
+  final String branch;
+  final String category;
+  //final String bookImage;
+  final String bookURL;
+  bool isFavorite;
 
-  Books({
-    this.title,
-    this.publishedYear,
-    this.bookImage,
-    this.branch,
-    this.category,
-    this.grade,
-  });
+  Books(
+      {required this.title,
+      required this.publishedYear,
+      //required this.bookImage,
+      required this.branch,
+      required this.category,
+      required this.grade,
+      required this.bookURL,
+       this.isFavorite = false,
+      });
 }
 
 List<String> selectedBooks = [];
@@ -21,26 +25,34 @@ List<String> selectedBooks = [];
 final List<Books> books = [
   Books(
       title: 'Kitap',
-      publishedYear: '2020',
-      grade: '12',
+      publishedYear: 2020,
+      category: 'Ders Anlatım Föyü Testler',
+      grade: 'TYT',
       branch: 'Mat',
-      category: 'tyt'),
+      bookURL:
+          'https://img.freepik.com/premium-vector/vector-icon-illustration-pink-heart-isolated-white-background_921039-1845.jpg'),
   Books(
       title: 'Kitap',
-      publishedYear: '2020',
-      grade: '12',
+      publishedYear: 2020,
+      category: 'Ders Anlatım Föyü Testler',
+      grade: 'TYT',
       branch: 'Mat',
-      category: 'tyt'),
+      bookURL:
+          'https://img.freepik.com/premium-vector/vector-icon-illustration-pink-heart-isolated-white-background_921039-1845.jpg'),
   Books(
       title: 'Kitap',
-      publishedYear: '2020',
-      grade: '12',
+      publishedYear: 2020,
+      category: 'Ders Anlatım Föyü Testler',
+      grade: 'TYT',
       branch: 'Mat',
-      category: 'tyt'),
+      bookURL:
+          'https://img.freepik.com/premium-vector/vector-icon-illustration-pink-heart-isolated-white-background_921039-1845.jpg'),
   Books(
       title: 'Kitap',
-      publishedYear: '2020',
-      grade: '12',
+      publishedYear: 2020,
+      category: 'Ders Anlatım Föyü Testler',
+      grade: 'TYT',
       branch: 'Mat',
-      category: 'tyt'),
+      bookURL:
+          'https://img.freepik.com/premium-vector/vector-icon-illustration-pink-heart-isolated-white-background_921039-1845.jpg'),
 ];

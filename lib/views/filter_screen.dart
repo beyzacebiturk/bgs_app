@@ -1,4 +1,4 @@
-import 'package:bgs_app/views/home.dart';
+import 'package:bgs_app/views/books_screen.dart';
 import 'package:flutter/material.dart';
 
 class FilterPage extends StatefulWidget {
@@ -37,7 +37,7 @@ class _FilterPageState extends State<FilterPage> {
             BackButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Home()));
+                    MaterialPageRoute(builder: (context) => const BooksScreen()));
               },
               color: Colors.white,
             )

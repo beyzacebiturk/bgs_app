@@ -1,5 +1,5 @@
-import 'package:bgs_app/navbar/navbar_states.dart';
-import 'package:bgs_app/views/home.dart';
+import 'package:bgs_app/navbar/navbar.dart';
+import 'package:bgs_app/views/books_screen.dart';
 import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:bgs_app/controllers/text_field.dart';
@@ -42,7 +42,7 @@ class HelpScreen extends StatelessWidget {
             BackButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Home()));
+                    MaterialPageRoute(builder: (context) => const BooksScreen()));
               },
               color: Colors.white,
             )

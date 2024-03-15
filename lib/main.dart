@@ -1,8 +1,8 @@
-import 'package:bgs_app/navbar/navbar_states.dart';
+import 'package:bgs_app/navbar/navbar.dart';
 import 'package:bgs_app/views/filter_screen.dart';
 import 'package:bgs_app/views/fav_screen.dart';
 import 'package:bgs_app/views/help_screen.dart';
-import 'package:bgs_app/views/home.dart';
+import 'package:bgs_app/views/books_screen.dart';
 import 'package:bgs_app/views/login.dart';
 import 'package:bgs_app/views/sign_up.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +14,6 @@ void main() {
   );
 }
 
-final selectedIndexProvider = StateProvider<int>((ref) => 0);
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -23,7 +21,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: BooksScreen(),
     );
   }
 }

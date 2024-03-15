@@ -1,6 +1,6 @@
-import 'package:bgs_app/navbar/navbar_states.dart';
+import 'package:bgs_app/navbar/navbar.dart';
 import 'package:flutter/material.dart';
-import 'package:bgs_app/views/home.dart';
+import 'package:bgs_app/views/books_screen.dart';
 
 class FavScreen extends StatelessWidget {
    FavScreen({Key? key}) : super(key: key);
@@ -11,10 +11,11 @@ class FavScreen extends StatelessWidget {
       appBar: AppBar(
           leading: Row(
           children: [
+            
             BackButton(
               onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Home()));},
+                  MaterialPageRoute(builder: (context) => const BooksScreen()));},
               color: Colors.white,
             )
           ],

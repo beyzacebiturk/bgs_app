@@ -1,13 +1,11 @@
 import 'dart:developer';
-
 import 'package:bgs_app/views/fav_screen.dart';
 import 'package:bgs_app/views/help_screen.dart';
-import 'package:bgs_app/views/home.dart';
+import 'package:bgs_app/views/books_screen.dart';
 import 'package:bgs_app/views/login.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:bgs_app/main.dart';
+import 'package:bgs_app/navbar/navbar_provider.dart';
 
 class Navbar extends ConsumerWidget {
   Navbar({super.key});
@@ -15,7 +13,7 @@ class Navbar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(selectedIndexProvider);
-    log("index:" + selectedIndex.toString());
+    //log("index:" + selectedIndex.toString());
 
     return Container(
       color: Colors.white,
@@ -33,7 +31,7 @@ class Navbar extends ConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Home(),
+                      builder: (context) => const BooksScreen(),
                     ),
                   );
                 },
@@ -86,40 +84,4 @@ class Navbar extends ConsumerWidget {
       ),
     );
   }
-}
-
-MaterialButton navbarIcon({
-  required IconData icon,
-  required VoidCallback onpressed,
-  required bool isSelected,
-  required String label,
-}) {
-  return MaterialButton(
-    onPressed: onpressed,
-    child: Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        Icon(icon,
-            size: 40,
-            color: isSelected
-                ? Colors.grey
-                : const Color.fromARGB(255, 36, 86, 127) //true gri, false mavi
-            ),
-
-        /* Positioned(
-          //ICON ALTINDAKİ LABEL - HATALI
-          bottom: 0,
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              color: isSelected
-                  ? Colors.grey
-                  : const Color.fromARGB(255, 36, 86, 127),
-            ),
-          ),
-        ), */
-      ],
-    ),
-  );
 }
