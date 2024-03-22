@@ -1,14 +1,17 @@
+import 'package:bgs_app/controllers/fav_provier.dart';
 import 'package:bgs_app/models/books.dart';
 import 'package:bgs_app/navbar/navbar.dart';
 import 'package:bgs_app/views/book_item.dart';
 import 'package:flutter/material.dart';
 import 'package:bgs_app/views/books_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class FavScreen extends StatelessWidget {
+class FavScreen extends ConsumerWidget {
   const FavScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+        final books = ref.watch(favoriteProvider);
     return Scaffold(
             backgroundColor: Colors.grey[100],
       appBar: AppBar(

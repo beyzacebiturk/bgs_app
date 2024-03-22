@@ -1,3 +1,4 @@
+import 'package:bgs_app/controllers/fav_provier.dart';
 import 'package:bgs_app/models/books.dart';
 import 'package:bgs_app/views/book_detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class BookItem extends ConsumerWidget {
   final Books book;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final listFav = ref.watch(favoriteProvider);
     debugPrint('Books list length: ${books.length}');
     return Card(
       color: Colors.white,
@@ -100,12 +102,12 @@ class BookItem extends ConsumerWidget {
                         color: const Color.fromARGB(255, 120, 149, 172),
                         child: IconButton(
                           onPressed: () {
-                            book.toggleFavorite(ref);
+                           book.toggleFavorite(ref);
                           },
                           icon: Icon(
                             book.isFavorite
-                                ? Icons.star_border_rounded
-                                : Icons.star_rounded,
+                                ? Icons.star_rounded
+                                : Icons.star_border_rounded,
                             color: Colors.white,
                             size: 35,
                           ),

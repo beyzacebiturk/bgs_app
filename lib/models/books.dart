@@ -24,7 +24,7 @@ class Books {
     this.isFavorite = false,
   });
 
-  Books copywith({
+  Books copyWith({
     int? id,
     String? title,
     int? publishedYear,
@@ -51,9 +51,10 @@ class Books {
 
     ref.read(favoriteProvider.notifier).setFavorite(id, isFavorite);
   }
+  
 }
 
-List<String> selectedBooks = [];
+List<Books> favoriteBooks = [];
 
 final List<Books> books = [
   Books(

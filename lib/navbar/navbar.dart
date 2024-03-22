@@ -18,7 +18,7 @@ class Navbar extends ConsumerWidget {
     return Container(
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 40),
+        padding: const EdgeInsets.only(bottom: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
@@ -45,7 +45,7 @@ class Navbar extends ConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FavScreen(),
+                      builder: (context) => const FavScreen(),
                     ),
                   );
                 },
