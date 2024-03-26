@@ -1,14 +1,10 @@
 import 'package:bgs_app/views/books_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class FilterPage extends StatefulWidget {
-  const FilterPage({super.key});
+final filterProvider = StateProvider((ref) => FilterOptions());
 
-  @override
-  _FilterPageState createState() => _FilterPageState();
-}
-
-class _FilterPageState extends State<FilterPage> {
+class FilterOptions {
   String? selectedYear;
   String? selectedCategory;
   String? selectedBranch;
@@ -20,24 +16,29 @@ class _FilterPageState extends State<FilterPage> {
   List<String> grades = ['tyt', 'ayt'];
 
   void clearFilters() {
-    setState(() {
-      selectedYear = null;
-      selectedCategory = null;
-      selectedBranch = null;
-      selectedGrade = null;
-    });
+    selectedYear = null;
+    selectedCategory = null;
+    selectedBranch = null;
+    selectedGrade = null;
   }
+}
+
+class FilterPage extends ConsumerWidget {
+  const FilterPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final filter = ref.watch(filterProvider);
     return Scaffold(
       appBar: AppBar(
         leading: Row(
           children: [
             BackButton(
               onPressed: () {
-                Navigator.pop(context,
-                    MaterialPageRoute(builder: (context) => const BooksScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BooksScreen()));
               },
               color: Colors.white,
             )
@@ -56,25 +57,22 @@ class _FilterPageState extends State<FilterPage> {
       body: Center(
         child: Column(
           children: [
-            buildDropdown('Basım Yılı', years, selectedYear, (value) {
-              setState(() {
-                selectedYear = value;
-              });
+            buildDropdown('Basım Yılı', filter.years, filter.selectedYear,
+                (value) {
+              ref.read(filterProvider).selectedYear = value;
             }),
-            buildDropdown('Kategori', categories, selectedCategory, (value) {
-              setState(() {
-                selectedCategory = value;
-              });
+            buildDropdown(
+                'Kategori', filter.categories, filter.selectedCategory,
+                (value) {
+              ref.read(filterProvider).selectedCategory = value;
             }),
-            buildDropdown('Ders', branches, selectedBranch, (value) {
-              setState(() {
-                selectedBranch = value;
-              });
+            buildDropdown('Ders', filter.branches, filter.selectedBranch,
+                (value) {
+              ref.read(filterProvider).selectedBranch = value;
             }),
-            buildDropdown('Sınıf', grades, selectedGrade, (value) {
-              setState(() {
-                selectedGrade = value;
-              });
+            buildDropdown('Sınıf', filter.grades, filter.selectedGrade,
+                (value) {
+              ref.read(filterProvider).selectedGrade = value;
             }),
             const SizedBox(height: 200),
             Row(
@@ -85,20 +83,20 @@ class _FilterPageState extends State<FilterPage> {
                     Navigator.pop(
                       context,
                       {
-                        'year': selectedYear,
-                        'category': selectedCategory,
-                        'branch': selectedBranch,
-                        'grade': selectedGrade,
+                        'year': filter.selectedYear,
+                        'category': filter.selectedCategory,
+                        'branch': filter.selectedBranch,
+                        'grade': filter.selectedGrade,
                       },
                     );
                   },
                   shape: RoundedRectangleBorder(
-                  side: const BorderSide(
-                    color: Colors.grey,
-                    width: 1,
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
                   child: const Text(
                     'FİLTRELE',
                     style: TextStyle(color: Colors.grey, fontSize: 16),
@@ -107,15 +105,15 @@ class _FilterPageState extends State<FilterPage> {
                 const SizedBox(height: 20),
                 MaterialButton(
                   onPressed: () {
-                    clearFilters();
+                    filter.clearFilters();
                   },
-                    shape: RoundedRectangleBorder(
-                  side: const BorderSide(
-                    color: Colors.grey,
-                    width: 1,
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
                   child: const Text(
                     'TEMİZLE',
                     style: TextStyle(color: Colors.grey, fontSize: 16),
@@ -128,25 +126,25 @@ class _FilterPageState extends State<FilterPage> {
       ),
     );
   }
+}
 
-  Widget buildDropdown(String label, List<String> items, String? selectedValue,
-      ValueChanged<String?> onChanged) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: DropdownButtonFormField(
-        decoration: InputDecoration(
-          labelText: label,
-          border: const OutlineInputBorder(),
-        ),
-        items: items.map((item) {
-          return DropdownMenuItem(
-            value: item,
-            child: Text(item),
-          );
-        }).toList(),
-        value: selectedValue,
-        onChanged: onChanged,
+Widget buildDropdown(String label, List<String> items, String? selectedValue,
+    void Function(String?) onChanged) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: DropdownButtonFormField(
+      decoration: InputDecoration(
+        labelText: label,
+        border: const OutlineInputBorder(),
       ),
-    );
-  }
+      items: items.map((item) {
+        return DropdownMenuItem(
+          value: item,
+          child: Text(item),
+        );
+      }).toList(),
+      value: selectedValue,
+      onChanged: onChanged,
+    ),
+  );
 }

@@ -7,7 +7,7 @@ class BookDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: Colors.purple[200],
+      backgroundColor: Colors.grey[100],
       body: Center(
         child: IconButton(onPressed:() {
            Navigator.push(
