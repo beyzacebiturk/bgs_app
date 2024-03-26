@@ -36,7 +36,7 @@ class _FilterPageState extends State<FilterPage> {
           children: [
             BackButton(
               onPressed: () {
-                Navigator.push(context,
+                Navigator.pop(context,
                     MaterialPageRoute(builder: (context) => const BooksScreen()));
               },
               color: Colors.white,

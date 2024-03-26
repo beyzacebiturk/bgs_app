@@ -11,7 +11,6 @@ class BooksScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -89,7 +88,7 @@ class BooksScreen extends ConsumerWidget {
                     );
                   },
                 ),
-              )
+              ),
             ],
           ),
         ),

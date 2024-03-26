@@ -11,9 +11,10 @@ class FavScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-        final books = ref.watch(favoriteProvider);
+    final favoriteBooks = ref.watch(favoriteBooksProvider);
+        debugPrint('favorite Books list length: ${favoriteBooks.length}');
     return Scaffold(
-            backgroundColor: Colors.grey[100],
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         leading: Row(
           children: [
@@ -40,9 +41,11 @@ class FavScreen extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: ListView.builder(
-          itemCount: books.length,
-          itemBuilder: (BuildContext context, int index) {
-            return BookItem(books[index]);
+          itemCount: favoriteBooks.length,
+          itemBuilder: (context, index) {
+            return BookItem(
+              favoriteBooks[index],
+            );
           },
         ),
       ),

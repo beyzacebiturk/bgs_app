@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BookItem extends ConsumerWidget {
-  const BookItem(this.book, {Key? key}) : super(key: key);
+  const BookItem(this.book, {super.key});
 
   final Books book;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final listFav = ref.watch(favoriteProvider);
     debugPrint('Books list length: ${books.length}');
     return Card(
       color: Colors.white,
@@ -102,10 +101,12 @@ class BookItem extends ConsumerWidget {
                         color: const Color.fromARGB(255, 120, 149, 172),
                         child: IconButton(
                           onPressed: () {
-                           book.toggleFavorite(ref);
+                            ref
+                                .read(favoriteBooksProvider.notifier)
+                                .toggleBookFavoriteStatus(book);
                           },
                           icon: Icon(
-                            book.isFavorite
+                            ref.watch(favoriteBooksProvider).contains(book)
                                 ? Icons.star_rounded
                                 : Icons.star_border_rounded,
                             color: Colors.white,

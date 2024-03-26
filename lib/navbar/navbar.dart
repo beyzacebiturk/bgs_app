@@ -18,11 +18,12 @@ class Navbar extends ConsumerWidget {
     return Container(
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 20),
+        padding: const EdgeInsets.only(bottom: 20.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           children: [
+            const SizedBox(height: 60),
             navbarIcon(
                 icon: Icons.book,
                 onpressed: () {

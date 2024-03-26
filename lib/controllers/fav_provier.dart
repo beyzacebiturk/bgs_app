@@ -1,45 +1,23 @@
 import 'package:bgs_app/models/books.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final favoriteProvider = StateNotifierProvider<FavoriteListState, List<Books>>(
-  (ref) {
-    return FavoriteListState();
-  },
-);
+class FavoriteBooksNotifier extends StateNotifier<List<Books>> {
+  FavoriteBooksNotifier() : super([]);
 
-class FavoriteListState extends StateNotifier<List<Books>> {
-  FavoriteListState() : super([]);
+  bool toggleBookFavoriteStatus(Books book) {
+    final bookIsFavorite = state.contains(book);
 
-  void setFavorite(int id, bool isFavorite) {
-    var newState = state.map(
-      (book) {
-        if (book.id == id) {
-          return book.copyWith(isFavorite: isFavorite);
-        } else {
-          return book;
-        }
-      },
-    ).toList();
-
-    state = newState;
-  }
-  
-
-
-  /*void addToFav(int index, List<Books> data) {
-    data[index].isFavorite = true;
-    final result = data.where((element) => element.isFavorite == true).toList();
-    favoriteBooks = [...result];
-  }
-
-  void removeFromFav(int id) {
-    for (final item in favoriteBooks) {
-      if (item.id == id) {
-        item.isFavorite = false;
-      }
+    if (bookIsFavorite) {
+      state = state.where((b) => b.id != book.id).toList();
+      return false;
+    } else {
+      state = [...state, book];
+      return true;
     }
-    final result =
-        favoriteBooks.where((element) => element.isFavorite == true).toList();
-    favoriteBooks = [...result];
-  }*/
+  }
 }
+
+final favoriteBooksProvider =
+    StateNotifierProvider<FavoriteBooksNotifier, List<Books>>((ref) {
+  return FavoriteBooksNotifier();
+});

@@ -32,7 +32,6 @@ class Books {
     String? branch,
     String? category,
     String? bookURL,
-    bool? isFavorite,
   }) {
     return Books(
       id: id ?? this.id,
@@ -42,19 +41,9 @@ class Books {
       branch: branch ?? this.branch,
       category: category ?? this.category,
       bookURL: bookURL ?? this.bookURL,
-      isFavorite: isFavorite ?? this.isFavorite,
     );
   }
-
-  void toggleFavorite(WidgetRef ref) {
-    isFavorite = !isFavorite;
-
-    ref.read(favoriteProvider.notifier).setFavorite(id, isFavorite);
-  }
-  
 }
-
-List<Books> favoriteBooks = [];
 
 final List<Books> books = [
   Books(
