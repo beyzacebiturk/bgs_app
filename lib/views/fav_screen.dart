@@ -1,5 +1,4 @@
 import 'package:bgs_app/controllers/fav_provier.dart';
-import 'package:bgs_app/models/books.dart';
 import 'package:bgs_app/navbar/navbar.dart';
 import 'package:bgs_app/views/book_item.dart';
 import 'package:flutter/material.dart';

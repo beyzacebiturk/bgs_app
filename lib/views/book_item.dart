@@ -1,6 +1,6 @@
 import 'package:bgs_app/controllers/fav_provier.dart';
 import 'package:bgs_app/models/books.dart';
-import 'package:bgs_app/views/book_detail_screen.dart';
+import 'package:bgs_app/views/book_video_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,7 +10,7 @@ class BookItem extends ConsumerWidget {
   final Books book;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    debugPrint('Books list length: ${books.length}');
+
     return Card(
       color: Colors.white,
       child: InkWell(
@@ -18,7 +18,7 @@ class BookItem extends ConsumerWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const BookDetailScreen(),
+              builder: (context) =>  VideoPlayerScreen(book),
             ),
           );
         },

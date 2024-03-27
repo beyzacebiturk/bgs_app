@@ -1,6 +1,3 @@
-import 'package:bgs_app/controllers/fav_provier.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 class Books {
   int id;
   final String title;
@@ -10,7 +7,8 @@ class Books {
   final String category;
   //final String bookImage;
   final String bookURL;
-  bool isFavorite;
+  final String videoURL;
+  final int questionCount;
 
   Books({
     required this.id,
@@ -21,65 +19,57 @@ class Books {
     required this.category,
     required this.grade,
     required this.bookURL,
-    this.isFavorite = false,
+    required this.videoURL,
+    required this.questionCount,
   });
-
-  Books copyWith({
-    int? id,
-    String? title,
-    int? publishedYear,
-    String? grade,
-    String? branch,
-    String? category,
-    String? bookURL,
-  }) {
-    return Books(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      publishedYear: publishedYear ?? this.publishedYear,
-      grade: grade ?? this.grade,
-      branch: branch ?? this.branch,
-      category: category ?? this.category,
-      bookURL: bookURL ?? this.bookURL,
-    );
-  }
 }
 
 final List<Books> books = [
   Books(
       id: 1,
-      title: 'Kitap',
+      title: 'Kitap1',
       publishedYear: 2020,
       category: 'Ders Anlatım Föyü Testler',
       grade: 'TYT',
       branch: 'Mat',
+      questionCount: 30,
+      videoURL:
+          'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
       bookURL:
           'https://img.freepik.com/premium-vector/vector-icon-illustration-pink-heart-isolated-white-background_921039-1845.jpg'),
   Books(
       id: 2,
-      title: 'Kitap',
+      title: 'Kitap2',
       publishedYear: 2020,
       category: 'Ders Anlatım Föyü Testler',
       grade: 'TYT',
       branch: 'Mat',
+      questionCount: 4,
+      videoURL:
+          'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
       bookURL:
           'https://img.freepik.com/premium-vector/vector-icon-illustration-pink-heart-isolated-white-background_921039-1845.jpg'),
   Books(
       id: 3,
-      title: 'Kitap',
+      title: 'Kitap3',
       publishedYear: 2020,
       category: 'Ders Anlatım Föyü Testler',
       grade: 'TYT',
       branch: 'Mat',
+      questionCount: 5,
+      videoURL:
+          'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
       bookURL:
           'https://img.freepik.com/premium-vector/vector-icon-illustration-pink-heart-isolated-white-background_921039-1845.jpg'),
   Books(
       id: 4,
-      title: 'Kitap',
+      title: 'Kitap4',
       publishedYear: 2020,
       category: 'Ders Anlatım Föyü Testler',
       grade: 'TYT',
       branch: 'Mat',
+      questionCount: 10,
+      videoURL: 'https://youtu.be/zWh3CShX_do',
       bookURL:
           'https://img.freepik.com/premium-vector/vector-icon-illustration-pink-heart-isolated-white-background_921039-1845.jpg'),
 ];

@@ -1,6 +1,5 @@
 import 'package:bgs_app/models/books.dart';
 import 'package:bgs_app/navbar/navbar.dart';
-import 'package:bgs_app/views/book_detail_screen.dart';
 import 'package:bgs_app/views/book_item.dart';
 import 'package:bgs_app/views/filter_screen.dart';
 import 'package:bgs_app/views/fav_screen.dart';
@@ -24,7 +23,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BookDetailScreen(),
+      home: BooksScreen(),
     );
   }
 }
