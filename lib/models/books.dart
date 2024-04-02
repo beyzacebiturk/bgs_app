@@ -32,7 +32,7 @@ final List<Books> books = [
       category: 'Ders Anlatım Föyü Testler',
       grade: 'TYT',
       branch: 'Mat',
-      questionCount: 30,
+      questionCount: 8,
       videoURL:
           'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
       bookURL:

@@ -1,63 +1,50 @@
-import 'package:bgs_app/models/books.dart';
-import 'package:bgs_app/widgets/buttons.dart';
+import 'package:appinio_video_player/appinio_video_player.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
 
-class VideoPlayerWidget extends StatefulWidget {
+class VideoPlayer extends StatefulWidget {
   final String videoUrl;
-
-  const VideoPlayerWidget({required this.videoUrl});
+  const VideoPlayer(this.videoUrl, {Key? key}) : super(key: key);
 
   @override
-  _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
+  State<VideoPlayer> createState() => _VideoPlayerState();
 }
 
-class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
-  late VideoPlayerController _controller;
-  late Future<void> _initializeVideoPlayerFuture;
-
-  int _selectedIndex = 0;
-
-  void _updateSelectedIndex(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+class _VideoPlayerState extends State<VideoPlayer> {
+  late CachedVideoPlayerController _videoPlayerController;
+  late CustomVideoPlayerController _customVideoPlayerController;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl));
-    _initializeVideoPlayerFuture = _controller.initialize();
-    _controller.setLooping(true);
-    _controller.play();
+    _videoPlayerController =
+        CachedVideoPlayerController.network(widget.videoUrl)
+          ..initialize().then((_) {
+            _customVideoPlayerController.videoPlayerController.play();
+            setState(() {});
+          });
+
+    _customVideoPlayerController = CustomVideoPlayerController(
+        context: context,
+        videoPlayerController: _videoPlayerController,
+        customVideoPlayerSettings:
+            const CustomVideoPlayerSettings(showSeekButtons: true));
   }
 
   @override
   void dispose() {
+    _customVideoPlayerController.dispose();
     super.dispose();
-    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FutureBuilder(
-          future: _initializeVideoPlayerFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return AspectRatio(
-                aspectRatio: _controller.value.aspectRatio,
-                child: VideoPlayer(_controller),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        ),
+        
+             CustomVideoPlayer(
+                customVideoPlayerController: _customVideoPlayerController,
+              ),
         Padding(
           padding: const EdgeInsets.all(12.0),
           child: Row(
@@ -68,7 +55,8 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                 heroTag: 'replay',
                 backgroundColor: Colors.white,
                 onPressed: () {
-                  _controller.seekTo(Duration.zero);
+                  _customVideoPlayerController.videoPlayerController
+                      .seekTo(Duration.zero);
                 },
                 child: const Icon(
                   Icons.fast_rewind,
@@ -80,15 +68,19 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                 backgroundColor: Colors.white,
                 onPressed: () {
                   setState(() {
-                    if (_controller.value.isPlaying) {
-                      _controller.pause();
+                    if (_customVideoPlayerController
+                        .videoPlayerController.value.isPlaying) {
+                      _customVideoPlayerController.videoPlayerController
+                          .pause();
                     } else {
-                      _controller.play();
+                      _customVideoPlayerController.videoPlayerController.play();
                     }
                   });
                 },
                 child: Icon(
-                  _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+                  _videoPlayerController.value.isPlaying
+                      ? Icons.pause
+                      : Icons.play_arrow,
                   color: Colors.black54,
                 ),
               ),
@@ -132,7 +124,6 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   }
 
   Future<void> _dialogBuilder(BuildContext context) {
-    int selectedIndex = 0;
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -141,9 +132,8 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
           title: const Text('Hatalı Soru Bildirimi'),
           content: const Text('Bu sorunun hatalı olduğunu bildiriyorsunuz'),
           actions: <Widget>[
+            //TEXT BUTONLARI KOY
 
-           //TEXT BUTONLARI KOY
-            
             TextButton(
               style: TextButton.styleFrom(
                   textStyle: Theme.of(context).textTheme.labelLarge,
@@ -175,3 +165,4 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     );
   }
 }
+

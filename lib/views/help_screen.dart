@@ -25,11 +25,26 @@ class HelpScreen extends StatelessWidget {
   final TextEditingController messageController = TextEditingController();
 
   final List<QuestionAnswer> questionAnswer = [
-    QuestionAnswer(question: 'Soru', answer: 'ahsbhka'),
-    QuestionAnswer(question: 'Soru', answer: 'ahsbhka'),
-    QuestionAnswer(question: 'Soru', answer: 'ahsbhka'),
-    QuestionAnswer(question: 'Soru', answer: 'ahsbhka'),
-    QuestionAnswer(question: 'Soru', answer: 'ahsbhka'),
+    QuestionAnswer(
+        question: 'Bazı sorular-testler yüklü değil.',
+        answer:
+            'Her şeyden önce yaşanan gecikmelerden dolayı siz değerli öğrencilerimizden özür dileriz. Ülkemizde müfredatların çok sık değişmesi ile birlikte maalesef kitapların da değişmesi gerekmektedir. Bu değişim süreci, kitapların içeriğinin değişmesi ile birlikte çekilen videoların da tekrar çekilmesini gerektiriyor. Yaşanan gecikme değişen müfredatlara bağlı olarak birden fazla kitapta kendini gösterebilmektedir. Bütün bunlara ek olarak çok fazla eleştiri veya yanlış/eksik anlatım ya da olumsuz herhangi farklı bir durumdan dolayı bazı videolarımızı tekrar çekiyoruz. Bu nedenle videoların yüklenme süreleri gecikebiliyor.'),
+    QuestionAnswer(
+        question: 'Video önceden açılıyordu, şimdi açılmıyor.',
+        answer:
+            'Böyle durumlar çok sık olmasa da ortaya çıkabiliyor. Bunun nedeni ilgili videonun yeniden çekilmek üzere silinmiş olmasıdır. Videolar en kısa sürede yüklenmiş olacaktır. Bunun için uygulamanızı güncellemenize gerek yok, sadece bir süre sonra tekrar kontrol etmeniz yeterli olacaktır.'),
+    QuestionAnswer(
+        question: 'Soruyu doğru seçiyorum ama başka sorunun çözümü geliyor.',
+        answer:
+            'Lütfen önce kitabınızın iç kapağından basım yılını kontrol ediniz ve doğru yıla ait kitabın çözümlerine baktığınızdan emin olunuz. Aynı kitap olsa bile basım yılına bağlı olarak soruların yerleri değişebilmektedir. Kitabın doğru yıla ait olduğuna emin olduğunuz halde yanlış çözüm videosu yükleniyorsa lütfen bize mesaj kısmından bildiriniz. İlgili birimimiz gereken düzeltmeyi hızlı bir şekilde yapacaktır. Videoların güncellenmesi ya da yeni videoların yüklenmesi için uygulamanızı güncellemenize gerek yoktur. Sadece soruyu tekrar kontrol etmeniz yeterli olacaktır.'),
+    QuestionAnswer(
+        question: 'Kitabım listede yok.',
+        answer:
+            'Öncelikle kitabınızın basım yılını kapağının iç kısmından kontrol ederek doğru yılın kitaplarını listelediğinizden emin olunuz. Eğer hala listede kitabınızı göremiyorsanız henüz videolar sisteme yüklenmemiş olabilir. İlgili kitabın durumunu Birey Akademi Forum Sayfası üzerinden bize sorarak öğrenebilirsiniz.'),
+    QuestionAnswer(
+        question: 'Videoda ses var ancak görüntü açılmıyor.',
+        answer:
+            'Eğer çözüm videolarının görüntülerini duyamıyorsanız cihazınızın android versiyonu html5 videolarını desteklemiyor olabilir. Bu durum genelde düşük model cihazlarda görülür. Cihazınızın işlemcisinin düşük olması ya da bellek miktarının yeterli olmaması gibi birçok etken de bu duruma yol açabilir. Bu yüzden önce diğer uygulamaları kapatıp belleği boşaltarak çalıştırmayı deneyiniz. Sonuç alamazsanız Birey Akademi Forum Sayfası üzerinden bize yazınız. Birlikte bir çözüm yolu bulmaya çalışabiliriz.'),
   ];
 
   @override
@@ -41,8 +56,10 @@ class HelpScreen extends StatelessWidget {
           children: [
             BackButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const BooksScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BooksScreen()));
               },
               color: Colors.white,
             )
@@ -174,9 +191,10 @@ class HelpScreen extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: ExpansionTile(
         iconColor: Colors.black,
-        backgroundColor: const Color.fromARGB(78, 217, 217, 217),
+        backgroundColor: Colors.white24,
         collapsedBackgroundColor: const Color.fromARGB(45, 158, 158, 158),
-        collapsedShape: Border.all(color: Colors.grey, width: 2),
+        collapsedShape: Border.all(
+            color: const Color.fromARGB(45, 158, 158, 158), width: 2),
         collapsedTextColor: Colors.black,
         onExpansionChanged: (bool expanded) {},
         controlAffinity: ListTileControlAffinity.leading,
@@ -186,7 +204,10 @@ class HelpScreen extends StatelessWidget {
         ),
         children: [
           ListTile(
-            title: Text(questionAnswer.answer),
+            title: Text(
+              questionAnswer.answer,
+              style: const TextStyle(fontSize: 13, letterSpacing: 0),
+            ),
           ),
         ],
       ),

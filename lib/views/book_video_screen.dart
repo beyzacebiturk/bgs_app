@@ -4,7 +4,6 @@ import 'package:bgs_app/navbar/navbar.dart';
 import 'package:bgs_app/views/books_screen.dart';
 import 'package:flutter/material.dart';
 
-
 class VideoPlayerScreen extends StatelessWidget {
   final Books book;
 
@@ -44,9 +43,7 @@ class VideoPlayerScreen extends StatelessWidget {
               flex: 1,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: VideoPlayerWidget(
-                  videoUrl: book.videoURL,
-                ),
+                child: VideoPlayer(book.videoURL),
               )),
           Padding(
             padding: const EdgeInsets.only(right: 300),
@@ -58,7 +55,7 @@ class VideoPlayerScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
           ),
-         const  SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Expanded(
