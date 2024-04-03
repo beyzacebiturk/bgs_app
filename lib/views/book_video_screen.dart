@@ -78,12 +78,16 @@ class VideoPlayerScreen extends StatelessWidget {
                       return ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            backgroundColor: Colors.white,
-                            side:
-                                const BorderSide(width: 2, color: Colors.grey)),
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          backgroundColor:  Colors.white,
+                          side: const BorderSide(
+                            width: 2,
+                            color: Colors.white54,
+                          ),
+                          elevation: 4,
+                        ),
                         child: Text(
                           '${index + 1}',
                           style: const TextStyle(

@@ -1,5 +1,5 @@
 import 'package:appinio_video_player/appinio_video_player.dart';
-import 'package:flutter/foundation.dart';
+import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 
 class VideoPlayer extends StatefulWidget {
@@ -41,10 +41,9 @@ class _VideoPlayerState extends State<VideoPlayer> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        
-             CustomVideoPlayer(
-                customVideoPlayerController: _customVideoPlayerController,
-              ),
+        CustomVideoPlayer(
+          customVideoPlayerController: _customVideoPlayerController,
+        ),
         Padding(
           padding: const EdgeInsets.all(12.0),
           child: Row(
@@ -132,7 +131,10 @@ class _VideoPlayerState extends State<VideoPlayer> {
           title: const Text('Hatalı Soru Bildirimi'),
           content: const Text('Bu sorunun hatalı olduğunu bildiriyorsunuz'),
           actions: <Widget>[
-            //TEXT BUTONLARI KOY
+            
+           /* BUTONLAR DİZİLECEK
+           MyButtons.reportButton(
+                buttonText: 'akjh', onPressed: () {}, isSelected: true),*/
 
             TextButton(
               style: TextButton.styleFrom(
@@ -165,4 +167,3 @@ class _VideoPlayerState extends State<VideoPlayer> {
     );
   }
 }
-

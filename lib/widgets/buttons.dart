@@ -60,4 +60,19 @@ class MyButtons {
       ),
     );
   }
+
+  static Widget reportButton({
+    required VoidCallback onPressed,
+    required String buttonText,
+    required bool isSelected,
+  }) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ButtonStyle(
+        backgroundColor:
+            isSelected ? MaterialStateProperty.all<Color>(Colors.green) : null,
+      ),
+      child: Text(buttonText),
+    );
+  }
 }

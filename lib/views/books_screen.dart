@@ -6,7 +6,7 @@ import 'package:bgs_app/views/filter_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BooksScreen extends ConsumerWidget {
-  const BooksScreen({Key? key}) : super(key: key);
+  const BooksScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,7 +27,7 @@ class BooksScreen extends ConsumerWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  const FilterPage()));
+                          builder: (context) => const FilterPage()));
                 },
                 color: Colors.white,
                 elevation: 3,

@@ -67,7 +67,7 @@ class HelpScreen extends StatelessWidget {
         ),
         backgroundColor: const Color.fromARGB(255, 36, 86, 127),
         title: const Text(
-          "Uygulama hakkında genel bilgiler",
+          "Sıkça Sorulan Sorular",
           style: TextStyle(
             color: Colors.white,
             fontSize: 17,
