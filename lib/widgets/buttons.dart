@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -66,13 +67,21 @@ class MyButtons {
     required String buttonText,
     required bool isSelected,
   }) {
-    return ElevatedButton(
+    return MaterialButton(
+      minWidth: double.tryParse('350'),
+      height: 40,
       onPressed: onPressed,
-      style: ButtonStyle(
-        backgroundColor:
-            isSelected ? MaterialStateProperty.all<Color>(Colors.green) : null,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
       ),
-      child: Text(buttonText),
+      color: isSelected ? Colors.grey[350] : Colors.green[800],
+      child: Text(
+        buttonText,
+        style: TextStyle(
+          color: isSelected ? Colors.black : Colors.white,
+        ),
+      ),
     );
   }
 }

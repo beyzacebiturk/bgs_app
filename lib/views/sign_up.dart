@@ -21,36 +21,54 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
+
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double deviceWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.grey[100],
         body: Column(
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height / 4,
-              width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/login.png'),
-                    fit: BoxFit.cover),
-              ),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
+            SizedBox(
+              width: deviceWidth,
+              height: deviceHeight / 4,
+              child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  Text(
-                    'Üye Ol',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
+                  Image.asset(
+                    'assets/images/backgraound.png',
+                    fit: BoxFit.cover,
                   ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Gelişiminizi takip etmek için ücretsiz üye olabilirsiniz.',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 97, 97, 97),
-                      fontSize: 15,
+                  Positioned(
+                    top: 30,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/eiscepte.png',
+                          width: 100,
+                          height: 100,
+                        ),
+                        const Text(
+                          'Üye Ol',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          'Gelişiminizi takip etmek için ücretsiz üye olabilirsiniz',
+                          style: TextStyle(
+                            color: Colors.grey[700],
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

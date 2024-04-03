@@ -19,7 +19,6 @@ class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
   Users user = Users();
 
-
   @override
   void initState() {
     super.initState();
@@ -52,31 +51,45 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.grey[100],
         body: Column(
           children: [
-            Container(
+            SizedBox(
               width: deviceWidth,
               height: deviceHeight / 4,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/login.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  const Text(
-                    'Üyelik',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
+                  Image.asset(
+                    'assets/images/background.png',
+                    fit: BoxFit.cover,
                   ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'E-posta ve şifrenizle giriş yapabilirsiniz',
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontSize: 15,
+                  Positioned(
+                    top: 30,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/eiscepte.png',
+                          width: 100,
+                          height: 100,
+                        ),
+                        const Text(
+                          'Üyelik',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          'E-posta ve şifrenizle giriş yapabilirsiniz',
+                          style: TextStyle(
+                            color: Colors.grey[700],
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -130,16 +143,20 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            MyButtons.paintedButton(onPressed: () {
-              if (formKey.currentState!.validate()) {
-                        formKey.currentState!.save();
-                      }
-            }, buttonText: 'GİRİŞ YAP'),
+            MyButtons.paintedButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                  }
+                },
+                buttonText: 'GİRİŞ YAP'),
             const SizedBox(height: 80),
             MyButtons.transparentButton(
                 onPressed: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => const SignUpScreen()));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()));
                 },
                 buttonText: 'KAYIT OL'),
             const SizedBox(height: 30),

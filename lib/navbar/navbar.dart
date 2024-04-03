@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bgs_app/navbar/navbar_provider.dart';
 
 class Navbar extends ConsumerWidget {
-  Navbar({super.key});
+  const Navbar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
