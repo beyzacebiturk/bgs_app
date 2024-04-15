@@ -6,7 +6,7 @@ import 'package:bgs_app/views/books_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FavScreen extends ConsumerWidget {
-  const FavScreen({Key? key}) : super(key: key);
+  const FavScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -48,7 +48,7 @@ class FavScreen extends ConsumerWidget {
           },
         ),
       ),
-      bottomNavigationBar: Navbar(),
+      bottomNavigationBar: const Navbar(),
     );
   }
 }

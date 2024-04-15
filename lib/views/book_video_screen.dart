@@ -100,7 +100,7 @@ class VideoPlayerScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Navbar(),
+      bottomNavigationBar: const Navbar(),
     );
   }
 }

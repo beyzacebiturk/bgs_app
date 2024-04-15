@@ -37,7 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 fit: StackFit.expand,
                 children: [
                   Image.asset(
-                    'assets/images/backgraound.png',
+                    'assets/images/background.png',
                     fit: BoxFit.cover,
                   ),
                   Positioned(
@@ -65,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           'Gelişiminizi takip etmek için ücretsiz üye olabilirsiniz',
                           style: TextStyle(
                             color: Colors.grey[700],
-                            fontSize: 15,
+                            fontSize: 14,
                           ),
                         ),
                       ],
@@ -80,7 +80,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: SingleChildScrollView(
                   child: Form(
                     key: formKey,
-                    //autovalidateMode: AutovalidateMode.always,
                     child: Column(
                       children: [
                         const SizedBox(height: 10),
@@ -169,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           ],
         ),
-        bottomNavigationBar: Navbar(),
+        bottomNavigationBar: const Navbar(),
       ),
     );
   }

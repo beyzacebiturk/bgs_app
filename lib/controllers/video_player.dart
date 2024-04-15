@@ -28,10 +28,12 @@ class _VideoPlayerState extends State<VideoPlayer> {
           });
 
     _customVideoPlayerController = CustomVideoPlayerController(
-        context: context,
-        videoPlayerController: _videoPlayerController,
-        customVideoPlayerSettings:
-            const CustomVideoPlayerSettings(showSeekButtons: true));
+      context: context,
+      videoPlayerController: _videoPlayerController,
+      customVideoPlayerSettings: const CustomVideoPlayerSettings(
+        showSeekButtons: true,
+      ),
+    );
   }
 
   @override
@@ -42,87 +44,90 @@ class _VideoPlayerState extends State<VideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
+      physics: const NeverScrollableScrollPhysics(),
       children: [
         CustomVideoPlayer(
           customVideoPlayerController: _customVideoPlayerController,
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                FloatingActionButton(
-                  heroTag: 'replay',
-                  backgroundColor: Colors.white,
-                  onPressed: () {
-                    _customVideoPlayerController.videoPlayerController
-                        .seekTo(Duration.zero);
-                  },
-                  child: const Icon(
-                    Icons.fast_rewind,
-                    color: Colors.black54,
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FloatingActionButton(
+                    heroTag: 'replay',
+                    backgroundColor: Colors.white,
+                    onPressed: () {
+                      _customVideoPlayerController.videoPlayerController
+                          .seekTo(Duration.zero);
+                    },
+                    child: const Icon(
+                      Icons.fast_rewind,
+                      color: Colors.black54,
+                    ),
                   ),
-                ),
-                FloatingActionButton(
-                  heroTag: 'play-pause',
-                  backgroundColor: Colors.white,
-                  onPressed: () {
-                    setState(() {
-                      if (_customVideoPlayerController
-                          .videoPlayerController.value.isPlaying) {
-                        _customVideoPlayerController.videoPlayerController
-                            .pause();
-                      } else {
-                        _customVideoPlayerController.videoPlayerController
-                            .play();
-                      }
-                    });
-                  },
-                  child: Icon(
-                    _videoPlayerController.value.isPlaying
-                        ? Icons.pause
-                        : Icons.play_arrow,
-                    color: Colors.black54,
+                  FloatingActionButton(
+                    heroTag: 'play-pause',
+                    backgroundColor: Colors.white,
+                    onPressed: () {
+                      setState(() {
+                        if (_customVideoPlayerController
+                            .videoPlayerController.value.isPlaying) {
+                          _customVideoPlayerController.videoPlayerController
+                              .pause();
+                        } else {
+                          _customVideoPlayerController.videoPlayerController
+                              .play();
+                        }
+                      });
+                    },
+                    child: Icon(
+                      _videoPlayerController.value.isPlaying
+                          ? Icons.pause
+                          : Icons.play_arrow,
+                      color: Colors.black54,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                FloatingActionButton(
-                  heroTag: 'report',
-                  backgroundColor: Colors.white,
-                  onPressed: () {
-                    _dialogBuilder(context);
-                  },
-                  child: const Text(
-                    'BİLDİR',
-                    style: TextStyle(color: Colors.black),
+                  const SizedBox(
+                    width: 50,
                   ),
-                ),
-                FloatingActionButton(
-                  heroTag: 'sd',
-                  backgroundColor: Colors.white,
-                  onPressed: () {},
-                  child: const Text(
-                    'SD',
-                    style: TextStyle(color: Colors.black),
+                  FloatingActionButton(
+                    heroTag: 'report',
+                    backgroundColor: Colors.white,
+                    onPressed: () {
+                      _dialogBuilder(context);
+                    },
+                    child: const Text(
+                      'BİLDİR',
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
-                ),
-                FloatingActionButton(
-                  heroTag: 'hd',
-                  backgroundColor: Colors.white,
-                  onPressed: () {},
-                  child: const Text(
-                    'HD',
-                    style: TextStyle(color: Colors.black),
+                  FloatingActionButton(
+                    heroTag: 'sd',
+                    backgroundColor: Colors.white,
+                    onPressed: () {},
+                    child: const Text(
+                      'SD',
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
-                ),
-              ],
+                  FloatingActionButton(
+                    heroTag: 'hd',
+                    backgroundColor: Colors.white,
+                    onPressed: () {},
+                    child: const Text(
+                      'HD',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ],
     );

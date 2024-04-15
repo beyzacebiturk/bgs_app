@@ -91,7 +91,7 @@ class BooksScreen extends ConsumerWidget {
             ],
           ),
         ),
-        bottomNavigationBar: Navbar(),
+        bottomNavigationBar: const Navbar(),
       ),
     );
   }

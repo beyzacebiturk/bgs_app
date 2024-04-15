@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:bgs_app/views/fav_screen.dart';
 import 'package:bgs_app/views/help_screen.dart';
 import 'package:bgs_app/views/books_screen.dart';
@@ -13,7 +12,6 @@ class Navbar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(selectedIndexProvider);
-    //log("index:" + selectedIndex.toString());
 
     return Container(
       color: Colors.white,

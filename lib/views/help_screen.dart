@@ -182,7 +182,7 @@ class HelpScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Navbar(),
+      bottomNavigationBar: const Navbar(),
     );
   }
 
@@ -200,7 +200,8 @@ class HelpScreen extends StatelessWidget {
         controlAffinity: ListTileControlAffinity.leading,
         title: Text(
           questionAnswer.question,
-          style: const TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w500,
+          fontSize: 15),
         ),
         children: [
           ListTile(
