@@ -1,4 +1,6 @@
 import 'package:appinio_video_player/appinio_video_player.dart';
+import 'package:bgs_app/models/books.dart';
+import 'package:bgs_app/views/books_screen.dart';
 import 'package:bgs_app/views/report_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,7 +9,8 @@ final reportProvider = StateProvider<int>((ref) => 0);
 
 class VideoPlayer extends StatefulWidget {
   final String videoUrl;
-  const VideoPlayer(this.videoUrl, {super.key});
+  final Books book;
+  const VideoPlayer(this.videoUrl, this.book, {super.key});
 
   @override
   State<VideoPlayer> createState() => _VideoPlayerState();
@@ -44,92 +47,116 @@ class _VideoPlayerState extends State<VideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: const NeverScrollableScrollPhysics(),
-      children: [
-        CustomVideoPlayer(
-          customVideoPlayerController: _customVideoPlayerController,
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      /*appBar: AppBar(    SADECE DİKEYDE APPBAR OLACAK 
+        leading: BackButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const BooksScreen()),
+            );
+          },
+          color: Colors.white,
         ),
-        Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FloatingActionButton(
-                    heroTag: 'replay',
-                    backgroundColor: Colors.white,
-                    onPressed: () {
-                      _customVideoPlayerController.videoPlayerController
-                          .seekTo(Duration.zero);
-                    },
-                    child: const Icon(
-                      Icons.fast_rewind,
-                      color: Colors.black54,
+        backgroundColor: const Color.fromARGB(255, 36, 86, 127),
+        title: Text(
+          book.title,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),*/
+      body: ListView(
+        physics: const NeverScrollableScrollPhysics(),
+        children: [
+          CustomVideoPlayer(
+            customVideoPlayerController: _customVideoPlayerController,
+          ),
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    FloatingActionButton(
+                      heroTag: 'replay',
+                      backgroundColor: Colors.white,
+                      onPressed: () {
+                        _customVideoPlayerController.videoPlayerController
+                            .seekTo(Duration.zero);
+                      },
+                      child: const Icon(
+                        Icons.fast_rewind,
+                        color: Colors.black54,
+                      ),
                     ),
-                  ),
-                  FloatingActionButton(
-                    heroTag: 'play-pause',
-                    backgroundColor: Colors.white,
-                    onPressed: () {
-                      setState(() {
-                        if (_customVideoPlayerController
-                            .videoPlayerController.value.isPlaying) {
-                          _customVideoPlayerController.videoPlayerController
-                              .pause();
-                        } else {
-                          _customVideoPlayerController.videoPlayerController
-                              .play();
-                        }
-                      });
-                    },
-                    child: Icon(
-                      _videoPlayerController.value.isPlaying
-                          ? Icons.pause
-                          : Icons.play_arrow,
-                      color: Colors.black54,
+                    FloatingActionButton(
+                      heroTag: 'play-pause',
+                      backgroundColor: Colors.white,
+                      onPressed: () {
+                        setState(() {
+                          if (_customVideoPlayerController
+                              .videoPlayerController.value.isPlaying) {
+                            _customVideoPlayerController.videoPlayerController
+                                .pause();
+                          } else {
+                            _customVideoPlayerController.videoPlayerController
+                                .play();
+                          }
+                        });
+                      },
+                      child: Icon(
+                        _videoPlayerController.value.isPlaying
+                            ? Icons.pause
+                            : Icons.play_arrow,
+                        color: Colors.black54,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 50,
-                  ),
-                  FloatingActionButton(
-                    heroTag: 'report',
-                    backgroundColor: Colors.white,
-                    onPressed: () {
-                      _dialogBuilder(context);
-                    },
-                    child: const Text(
-                      'BİLDİR',
-                      style: TextStyle(color: Colors.black),
+                    const SizedBox(
+                      width: 50,
                     ),
-                  ),
-                  FloatingActionButton(
-                    heroTag: 'sd',
-                    backgroundColor: Colors.white,
-                    onPressed: () {},
-                    child: const Text(
-                      'SD',
-                      style: TextStyle(color: Colors.black),
+                    FloatingActionButton(
+                      heroTag: 'report',
+                      backgroundColor: Colors.white,
+                      onPressed: () {
+                        _dialogBuilder(context);
+                      },
+                      child: const Text(
+                        'BİLDİR',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
-                  ),
-                  FloatingActionButton(
-                    heroTag: 'hd',
-                    backgroundColor: Colors.white,
-                    onPressed: () {},
-                    child: const Text(
-                      'HD',
-                      style: TextStyle(color: Colors.black),
+                    FloatingActionButton(
+                      heroTag: 'sd',
+                      backgroundColor: Colors.white,
+                      onPressed: () {},
+                      child: const Text(
+                        'SD',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
-                  ),
-                ],
+                    FloatingActionButton(
+                      heroTag: 'hd',
+                      backgroundColor: Colors.white,
+                      onPressed: () {},
+                      child: const Text(
+                        'HD',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 
