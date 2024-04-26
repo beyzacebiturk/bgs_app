@@ -1,4 +1,4 @@
-import 'package:bgs_app/controllers/video_player.dart';
+import 'package:bgs_app/controllers/video_player_portrait.dart';
 import 'package:bgs_app/models/books.dart';
 import 'package:bgs_app/views/book_item.dart';
 import 'package:bgs_app/views/filter_screen.dart';

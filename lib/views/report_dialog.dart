@@ -1,4 +1,4 @@
-import 'package:bgs_app/controllers/video_player.dart';
+import 'package:bgs_app/controllers/video_player_portrait.dart';
 import 'package:bgs_app/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -1,4 +1,4 @@
-import 'package:bgs_app/views/books_screen.dart';
+import 'package:bgs_app/views/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,29 +30,9 @@ class FilterPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final filter = ref.watch(filterProvider);
     return Scaffold(
-      appBar: AppBar(
-        leading: Row(
-          children: [
-            BackButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const BooksScreen()));
-              },
-              color: Colors.white,
-            )
-          ],
-        ),
-        backgroundColor: const Color.fromARGB(255, 36, 86, 127),
-        title: const Text(
-          "Filtreleme",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 17,
-            letterSpacing: 2,
-          ),
-        ),
+      appBar: const MyAppBar(
+        title: "Filtreleme",
+        backButton: true,
       ),
       body: Center(
         child: Column(

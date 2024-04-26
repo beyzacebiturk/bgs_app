@@ -1,6 +1,6 @@
 import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:bgs_app/models/books.dart';
-import 'package:bgs_app/views/books_screen.dart';
+import 'package:bgs_app/views/appbar.dart';
 import 'package:bgs_app/views/report_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,7 +29,6 @@ class _VideoPlayerState extends State<VideoPlayer> {
             _customVideoPlayerController.videoPlayerController.play();
             setState(() {});
           });
-
     _customVideoPlayerController = CustomVideoPlayerController(
       context: context,
       videoPlayerController: _videoPlayerController,
@@ -47,29 +46,11 @@ class _VideoPlayerState extends State<VideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      backgroundColor: Colors.white,
-      /*appBar: AppBar(    SADECE DİKEYDE APPBAR OLACAK 
-        leading: BackButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const BooksScreen()),
-            );
-          },
-          color: Colors.white,
-        ),
-        backgroundColor: const Color.fromARGB(255, 36, 86, 127),
-        title: Text(
-          book.title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 17,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),*/
+      appBar: MyAppBar(
+        title: "book.title",  //düzenleme
+        backButton: true,
+      ),
       body: ListView(
         physics: const NeverScrollableScrollPhysics(),
         children: [

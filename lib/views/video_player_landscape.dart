@@ -1,5 +1,7 @@
 import 'package:appinio_video_player/appinio_video_player.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class LandscapeVideoPlayer extends StatefulWidget {
   final String videoUrl;
@@ -40,10 +42,10 @@ class _LandscapeVideoPlayerState extends State<LandscapeVideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(physics: const NeverScrollableScrollPhysics(), children: [
-      CustomVideoPlayer(
+    return Center(
+      child: CustomVideoPlayer(
         customVideoPlayerController: _customVideoPlayerController,
       ),
-    ]);
+    );
   }
 }
