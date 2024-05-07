@@ -1,7 +1,6 @@
 import 'package:bgs_app/controllers/video_player_portrait.dart';
 import 'package:bgs_app/models/books.dart';
 import 'package:bgs_app/navbar/navbar.dart';
-import 'package:bgs_app/views/appbar.dart';
 import 'package:bgs_app/views/video_player_landscape.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,7 @@ class VideoPlayerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[100],
       body: OrientationBuilder(
         builder: (context, orientation) {
           if (MediaQuery.of(context).orientation == Orientation.landscape) {
@@ -24,7 +23,11 @@ class VideoPlayerScreen extends StatelessWidget {
 
           return Column(
             children: [
-              Expanded(flex: 1, child: VideoPlayer(book.videoURL, book)),
+              SizedBox(
+                height: MediaQuery.of(context).size.height *
+                    0.48, //buton boyutuna göre düzenlenmesi gerek her cihazda farklılık gösteriyor
+                child: VideoPlayer(book.videoURL, book),
+              ),
               Padding(
                 padding: const EdgeInsets.only(right: 300),
                 child: Text(
@@ -36,14 +39,10 @@ class VideoPlayerScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
               Expanded(
-                flex: 1,
                 child: Container(
                   alignment: Alignment.topLeft,
-                  color: Colors.grey[200],
+                  color: Colors.grey[100],
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: GridView.builder(

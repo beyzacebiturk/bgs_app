@@ -41,6 +41,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
   @override
   void dispose() {
     _customVideoPlayerController.dispose();
+    _videoPlayerController.dispose();
     super.dispose();
   }
 
@@ -48,7 +49,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: "book.title",  //düzenleme
+        title: widget.book.title,
         backButton: true,
       ),
       body: ListView(
